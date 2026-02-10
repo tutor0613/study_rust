@@ -1,17 +1,30 @@
 fn trim_me(input: &str) -> &str {
     // TODO: Remove whitespace from both ends of a string.
+    println!("input below : ");
+    for c in input.chars() {
+        println!("{:?} - {:?}", c, (c == ' '));
+    }
+    println!("end!");
+
+    input
 }
 
 fn compose_me(input: &str) -> String {
     // TODO: Add " world!" to the string! There are multiple ways to do this.
+
+    input.to_string()
 }
 
 fn replace_me(input: &str) -> String {
     // TODO: Replace "cars" in the string with "balloons".
+
+    input.to_string()
 }
 
 fn main() {
     // You can optionally experiment here.
+    let s = "   as df   ";
+    trim_me(s);
 }
 
 #[cfg(test)]
