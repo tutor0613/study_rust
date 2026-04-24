@@ -9,6 +9,7 @@ fn main() {
 
     // TODO: Fix the compiler error by adding something to this match statement.
     match &optional_point {
+    // match optional_point.as_ref() { is same
         Some(p) => println!("Coordinates are {},{}", p.x, p.y),
         _ => panic!("No match!"),
     }

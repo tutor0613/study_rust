@@ -15,6 +15,9 @@ fn generate_nametag_text(name: String) -> Result<String, String> {
 
 fn main() {
     // You can optionally experiment here.
+    // let input = "hello";
+    // let s1 = input.to_string();
+    // let s2 = input.to_owned();
 }
 
 #[cfg(test)]

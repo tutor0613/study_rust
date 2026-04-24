@@ -10,9 +10,21 @@ mod tests {
         let optional_target = Some(target);
 
         // TODO: Make this an if-let statement whose value is `Some`.
+        // Option 1
         if let Some(word) = optional_target {
             assert_eq!(word, target);
         }
+
+        // Option 2
+        // if optional_target.is_some() {
+        //     assert_eq!(optional_target.unwrap(), target);
+        // }
+
+        // Option 3
+        // let Some(word) = optional_target else {
+        //     return;
+        // };
+        // assert_eq!(word, target);
     }
 
     #[test]
