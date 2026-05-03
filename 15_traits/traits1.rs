@@ -2,10 +2,15 @@
 // implementing this trait.
 trait AppendBar {
     fn append_bar(self) -> Self;
+    // same with
+    // fn append_bar(self: Self) -> Self;
 }
 
 impl AppendBar for String {
     // TODO: Implement `AppendBar` for the type `String`.
+    fn append_bar(self) -> Self {
+        self + "Bar"
+    }
 }
 
 fn main() {
