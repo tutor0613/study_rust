@@ -19,7 +19,11 @@ struct ReportCard<T> {
 }
 
 // TODO: Adjust the impl block as described above.
-impl<T: std::fmt::Display> ReportCard<T> {
+// impl<T: std::fmt::Display> ReportCard<T> {
+impl<T> ReportCard<T>
+where
+    T: std::fmt::Display,
+{
     fn print(&self) -> String {
         format!(
             "{} ({}) - achieved a grade of {}",
