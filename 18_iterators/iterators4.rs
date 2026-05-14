@@ -10,7 +10,19 @@ fn factorial(num: u64) -> u64 {
     // - additional variables
     // For an extra challenge, don't use:
     // - recursion
+    let mut fac = 1;
+    // for i in 1..num+1 {
+    for i in 2..=num {  // is same
+        fac *= i;
+    }
+    fac
 }
+
+/* and below is same too
+fn factorial(num: u64) -> u64 {
+    (2..=num).product()
+}
+*/
 
 fn main() {
     // You can optionally experiment here.
