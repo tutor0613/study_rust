@@ -28,14 +28,53 @@ enum IntoColorError {
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = IntoColorError;
 
-    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {}
+    // My answer
+    // fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+    //     let (r, g, b) = tuple;
+    //     let (Ok(r), Ok(g), Ok(b)) = (u8::try_from(r), u8::try_from(g), u8::try_from(b)) else {
+    //         return Err(IntoColorError::IntConversion);
+    //     };
+    //     Ok(Self {
+    //         red: r,
+    //         green: g,
+    //         blue: b,
+    //     })
+    // }
+
+    // In solution
+    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        let (Ok(red), Ok(green), Ok(blue)) = (
+            u8::try_from(tuple.0),
+            u8::try_from(tuple.1),
+            u8::try_from(tuple.2),
+        ) else {
+            return Err(IntoColorError::IntConversion);
+        };
+        Ok(Self{red, green, blue})
+    }
 }
 
 // TODO: Array implementation.
 impl TryFrom<[i16; 3]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {}
+    // My answer
+    // fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+    //     let [r, g, b] = arr;
+    //     let (Ok(r), Ok(g), Ok(b)) = (u8::try_from(r), u8::try_from(g), u8::try_from(b)) else {
+    //         return Err(IntoColorError::IntConversion);
+    //     };
+    //     Ok(Self {
+    //         red: r,
+    //         green: g,
+    //         blue: b,
+    //     })
+    // }
+
+    // In solution
+    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        Self::try_from((arr[0], arr[1], arr[2]))
+    }
 }
 
 // TODO: Slice implementation.
@@ -43,7 +82,30 @@ impl TryFrom<[i16; 3]> for Color {
 impl TryFrom<&[i16]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {}
+    // My answer
+    // fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+    //     let mut item = slice.iter();
+    //     let (Some(r), Some(g), Some(b), None) = (item.next(), item.next(), item.next(), item.next()) else {
+    //         return Err(IntoColorError::BadLen);
+    //     };
+    //     let (Ok(r), Ok(g), Ok(b)) = (u8::try_from(*r), u8::try_from(*g), u8::try_from(*b)) else {
+    //         return Err(IntoColorError::IntConversion);
+    //     };
+    //     Ok(Self {
+    //         red: r,
+    //         green: g,
+    //         blue: b,
+    //     })
+    // }
+
+    // In solution
+    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        if slice.len() != 3 {
+            Err(IntoColorError::BadLen)
+        } else {
+            Self::try_from((slice[0], slice[1], slice[2]))
+        }
+    }
 }
 
 fn main() {
